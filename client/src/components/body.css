@@ -1,0 +1,108 @@
+body {
+    background-color: rgb(210, 75, 223,0.2);
+}
+
+/****Styling the first grid container (Register and login boxes)****/
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+  }
+.grid-item {
+    padding: 20px;
+    font-size: auto;
+  }
+  
+
+.register-header-text {
+    text-align: center;
+}
+
+.login-header-text {
+    text-align: center;
+}
+
+#register-field {
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.2) 0%, rgb(210, 75, 223,0.5) 100%);
+    border-color: #000000;
+}
+.reg-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+}
+
+#login-field {
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.5) 0%, rgb(210, 75, 223,1) 100%);
+    border-color: #000000;
+    text-align: center;
+}
+
+.login-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+}
+
+/****Styles the random genereted dinner table, by clicking "Random Dinner Roulette"-button ****/
+#table1 {
+    display: none;
+    margin-left:auto; 
+    margin-right:auto;
+    text-align: center;
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.1) 0%, rgb(210, 75, 223,0.4) 100%);
+}
+
+.row {
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.1) 0%, rgb(210, 75, 223,0.4) 100%);
+}
+
+/****Styles the "send dinner table to e-mail"-button****/
+.sendBtn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/****Styling the second grid container (fill in recipes into database + two pictures)****/
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+.grid-item2 {
+    padding: 20px;
+    font-size: auto;
+}
+.grid-item2-pic{
+    padding-top: 45px;
+}
+
+/*Styles the fill in recipes fields*/
+#save-rec-field {
+    display: inline-block;
+    border-color: #000000;
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.1) 0%, rgb(210, 75, 223,0.5) 100%);
+}
+
+.save-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+/****Various headers style****/
+.register-header-text{font-variant: small-caps; font-style: oblique; font-family: "Lucida Console", Courier, monospace;}
+.login-header-text{font-variant: small-caps; font-style: oblique; font-family: "Lucida Console", Courier, monospace;}
+.add-header{font-variant: small-caps; font-style: oblique; font-family: "Lucida Console", Courier, monospace;}

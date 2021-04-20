@@ -1,0 +1,15 @@
+footer {
+    display: block;
+    background: linear-gradient(90deg, rgb(210, 75, 223,0.5) 40%, rgba(0, 0, 0) 100%);
+  }
+
+.grid-container-footer {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+
+.grid-item-footer {
+    padding: 20px;
+    font-size: auto;
+}
