@@ -9,6 +9,14 @@ class Recipes {
         });
     }
 
+    static retrieveFromFish (callback) {
+        db.query('SELECT name from fish', function (err,res) {
+            if (err.error)
+            return callback(err);
+        callback(res);
+        });
+    }
+
     static retrieveAllFromVegetarian (callback) {
         db.query('SELECT name from vegetarian', function (err,res) {
             if (err.error)

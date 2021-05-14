@@ -1,5 +1,14 @@
 var {Pool} = require('pg');
+const pool = new Pool ({
+    user: "postgres",
+    password: "Jaxiboy87admin",
+    host: "localhost",
+    port: 5432,
+    database: "recipes-db"
+})
 
+module.exports = pool;
+/*
 const CONNECTION_STRING = process.env.DATABASE_URL || 'postgresql://postgres:Jaxiboy87admin@localhost:5432/recipes-db';
 const SSL = process.env.NODE_ENV === 'production';
 
@@ -41,3 +50,4 @@ class Database {
 }
 
 module.exports = new Database();
+*/

@@ -1,6 +1,20 @@
 import React from 'react';
 
+//import React, { Component } from "react";
+//import axios from "axios";
+//import Recipes from '../../../../server/models/recipes';
+
 //import './rbButton.css'
+
+
+/*
+componentDidMount = () => {
+    axios.get("/").then(function(response) {
+        //console.log(response.data.name);
+        console.log(response)
+    })
+}
+*/
 
 function RgButton() {
 
@@ -27,6 +41,13 @@ function RgButton() {
 
     // Using JavaScript-DOM temporary, in this function, just for testing
     function clickHandler() {
+    
+    const axios = require('axios').default;
+    
+
+    
+
+
         
     // Arrays
     const days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
@@ -64,8 +85,10 @@ function RgButton() {
     let fishDays = 2;
     let veggieDays = 1;
     let variousDays = 4;
-
     while(daysCount > 0) {
+
+       
+        var test = "h" // axios - database
         const tr$count = document.createElement('tr');
         const dag$count = document.createElement('td');
         dag$count.innerHTML = days[count];
@@ -77,13 +100,28 @@ function RgButton() {
         // picking a fish meal
         if(randomMenu === 1 && fishDays > 0) {
             let fishNr = Math.floor(Math.random() * fish.length);
+
+            axios.get("http://localhost:5000/fish/" + fishNr, {headers: {
+                'Content-Type': 'application/json'}}).then(response => {
+                //console.log(response.data);
+                //console.log(response.data.name)
+                //console.log(`Status: ${response.status}`)
+                //console.log(`Server: ${response.headers.server}`)
+                //console.log(`Date: ${response.headers.date}`)
+                test = response.data[0].name;
+                console.log(test)
+                
+            })
+
             if(fishDays===1) {
                 while (fishNr===f1) {
                     fishNr = Math.floor(Math.random() * fish.length);
                 }
                 //System.out.println(dayList[count]+": "+fish[fishNr]);
+                //rett$count.innerHTML = Recipes.retrieveFromFish(fishNr);
+                //oppskrift$count.innerHTML = Recipes.retrieveFromFish(fishNr);
                 rett$count.innerHTML = fish[fishNr];
-                oppskrift$count.innerHTML = fishRes[fishNr];
+                oppskrift$count.innerHTML = test;
                 tr$count.appendChild(dag$count);
                 tr$count.appendChild(rett$count);
                 tr$count.appendChild(oppskrift$count);
