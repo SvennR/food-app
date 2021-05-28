@@ -1,23 +1,65 @@
-import React from 'react';
-
-//import React, { Component } from "react";
-//import axios from "axios";
-//import Recipes from '../../../../server/models/recipes';
+import React, { useState, useEffect } from 'react';
+//import axios from 'axios';
 
 //import './rbButton.css'
 
 
-/*
-componentDidMount = () => {
-    axios.get("/").then(function(response) {
-        //console.log(response.data.name);
-        console.log(response)
-    })
-}
-*/
+
 
 function RgButton() {
 
+    
+    const [countFish, setCountFish] = useState(0);
+    const getFishCount = () => {
+        fetch("http://localhost:5000/fishCount")
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                setCountFish(json);   
+        });
+    };
+        
+   
+   const [countVegetarian, setCountVegetarian] = useState(0);
+    const getVegetarianCount = () => {
+        fetch("http://localhost:5000/vegetarianCount")
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                setCountVegetarian(json);   
+        });
+    };
+        
+ 
+
+   const [countMeat, setCountMeat] = useState(0);
+    const getMeatCount = () => {
+        fetch("http://localhost:5000/meatCount")
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                setCountMeat(json);   
+        });
+    };
+        
+   const [fname, setfname] = useState("default");
+   const getRecipe = (number) => {
+        fetch("http://localhost:5000/fish/"+number)
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                setfname(json);   
+        });
+    };
+
+    //console.log("fname: "+fname.name);
+        
+   useEffect(() => {
+    getVegetarianCount();
+    getFishCount();
+    getMeatCount();
+   }, []); 
+  
     return (
         <div>
         <table id="table1">
@@ -39,15 +81,22 @@ function RgButton() {
         </div>
     )
 
-    // Using JavaScript-DOM temporary, in this function, just for testing
+    
     function clickHandler() {
-    
-    const axios = require('axios').default;
-    
 
-    
-
-
+    // set random number based by how many rows exists in table
+   var randomOneFish = Math.floor(Math.random() * countFish.count);
+   var randomTwoFish = Math.floor(Math.random() * countFish.count);
+   while (randomOneFish===randomTwoFish) {
+    randomTwoFish = Math.floor(Math.random() * countFish.count);
+   }
+   console.log("random1: "+randomOneFish)
+   console.log("random2: "+randomTwoFish)
+   var randomOneVegetarian = Math.floor(Math.random() * countVegetarian.count);
+   var randomOneMeat = Math.floor(Math.random() * countMeat.count);
+   var randomTwoMeat = Math.floor(Math.random() * countMeat.count);
+   var randomThreeMeat = Math.floor(Math.random() * countMeat.count);
+   var randomFoureMeat = Math.floor(Math.random() * countMeat.count);
         
     // Arrays
     const days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
@@ -72,9 +121,9 @@ function RgButton() {
                     "https://trinesmatblogg.no/recipe/mammas-kjottkaker-med-brun-saus-og-kalstuing/", "https://trinesmatblogg.no/recipe/finnbiff-med-bacon-rosenkal-og-sellerirotmos/", "https://www.godt.no/oppskrift/2081/mats-moeller-daehlis-favoritt-kyllingpasta-med-chorizo-og-brokkoli", "https://www.godt.no/oppskrift/7662/nudler-med-ingefaer-og-chili-kjoettsaus", "https://frutimian.no/2018/08/02/pasta-og-kyllingsalat-med-hvitloksbrod/", "https://frutimian.no/2018/01/26/tex-mexsalat/", 
                     "https://frutimian.no/2016/02/17/pastasalat-med-chorizo-og-tomat/", "https://www.tine.no/oppskrifter/middag-og-hovedretter/kjott/biff-og-grønnsakswok", "https://www.matprat.no/oppskrifter/kos/gyros/", "https://spar.no/Oppskrifter/grillet-ytrefilet-av-svin/", "https://coop.no/mega/hjemmerestauranten/bakt-potet-med-3-deilige-toppinger/?utm_source=facebook&utm_medium=content&utm_campaign=hjemmerestauranten"];
 
-
-
-
+        
+    console.log("test: "+fname);
+        
     let f1;
     let m1;
     let m2;
@@ -85,10 +134,12 @@ function RgButton() {
     let fishDays = 2;
     let veggieDays = 1;
     let variousDays = 4;
+    
+
     while(daysCount > 0) {
 
        
-        var test = "h" // axios - database
+        
         const tr$count = document.createElement('tr');
         const dag$count = document.createElement('td');
         dag$count.innerHTML = days[count];
@@ -99,29 +150,20 @@ function RgButton() {
 
         // picking a fish meal
         if(randomMenu === 1 && fishDays > 0) {
-            let fishNr = Math.floor(Math.random() * fish.length);
-
-            axios.get("http://localhost:5000/fish/" + fishNr, {headers: {
-                'Content-Type': 'application/json'}}).then(response => {
-                //console.log(response.data);
-                //console.log(response.data.name)
-                //console.log(`Status: ${response.status}`)
-                //console.log(`Server: ${response.headers.server}`)
-                //console.log(`Date: ${response.headers.date}`)
-                test = response.data[0].name;
-                console.log(test)
-                
-            })
+            //let fishNr = Math.floor(Math.random() * countFish.count);
 
             if(fishDays===1) {
-                while (fishNr===f1) {
-                    fishNr = Math.floor(Math.random() * fish.length);
-                }
+                getRecipe(randomOneFish);
+                console.log("test2: "+fname.name);
+                //while (randomOneFish===randomTwoFish) {
+                //    randomTwoFish = Math.floor(Math.random() * countFish.count);
+                //}
+                
                 //System.out.println(dayList[count]+": "+fish[fishNr]);
                 //rett$count.innerHTML = Recipes.retrieveFromFish(fishNr);
                 //oppskrift$count.innerHTML = Recipes.retrieveFromFish(fishNr);
-                rett$count.innerHTML = fish[fishNr];
-                oppskrift$count.innerHTML = test;
+                rett$count.innerHTML = fname;
+                oppskrift$count.innerHTML = fname.lookup;
                 tr$count.appendChild(dag$count);
                 tr$count.appendChild(rett$count);
                 tr$count.appendChild(oppskrift$count);
@@ -133,10 +175,12 @@ function RgButton() {
                 
             }
             else {
-                f1 = fishNr;
+                getRecipe(randomTwoFish);
+                console.log("test3: "+fname);
+               // f1 = fishNr;
                 //System.out.println(dayList[count]+": "+fish[fishNr]);
-                rett$count.innerHTML = fish[fishNr];
-                oppskrift$count.innerHTML = fishRes[fishNr];
+                rett$count.innerHTML = fname.name;
+                oppskrift$count.innerHTML = fname.lookup;
                 tr$count.appendChild(dag$count);
                 tr$count.appendChild(rett$count);
                 tr$count.appendChild(oppskrift$count);
@@ -150,7 +194,7 @@ function RgButton() {
         }
         // picking a vegetarian meal
         else if(randomMenu === 2 && veggieDays > 0) {
-            let veggieNr = Math.floor(Math.random() * veggie.length);
+            let veggieNr = Math.floor(Math.random() * countVegetarian.count);
             //System.out.println(dayList[count]+": "+veggie[veggieNr]);
             rett$count.innerHTML = veggie[veggieNr];
             oppskrift$count.innerHTML = veggieRes[veggieNr];
@@ -167,11 +211,11 @@ function RgButton() {
         // TODO: optimize the while conditions
         else if(randomMenu === 3 && variousDays > 0) {
 
-            let variousNr = Math.floor(Math.random() * various.length);
+            let variousNr = Math.floor(Math.random() * countMeat.count);
 
             if(variousDays===1) {
                 while (variousNr===m1 || variousNr===m2 || variousNr===m3) {
-                    variousNr = Math.floor(Math.random() * various.length);
+                    variousNr = Math.floor(Math.random() * countMeat.count);
                 }
                 rett$count.innerHTML = various[variousNr];
                 oppskrift$count.innerHTML = varRes[variousNr];
@@ -186,7 +230,7 @@ function RgButton() {
             }
             else if(variousDays===2) {
                 while (variousNr===m1 || variousNr===m2) {
-                    variousNr = Math.floor(Math.random() * various.length);
+                    variousNr = Math.floor(Math.random() * countMeat.count);
                 }
                 m3 = variousNr; 
                 rett$count.innerHTML = various[variousNr];
@@ -202,7 +246,7 @@ function RgButton() {
             }
             else if(variousDays===3) {
                 while (variousNr===m1) {
-                    variousNr = Math.floor(Math.random() * various.length);
+                    variousNr = Math.floor(Math.random() * countMeat.count);
                 }
                 m2 = variousNr;
                 //System.out.println(dayList[count]+": "+various[variousNr]);
@@ -219,7 +263,7 @@ function RgButton() {
             }
             else if(variousDays===4) {
                 //while (variousNr==m2 || variousNr==m3 || variousNr==m4) {
-                //    variousNr = Math.floor(Math.random() * various.length);
+                //    variousNr = Math.floor(Math.random() * countMeat.count);
                 //}
                 m1 = variousNr;
                 rett$count.innerHTML = various[variousNr];
