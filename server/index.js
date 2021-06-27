@@ -75,7 +75,7 @@ app.get('/fish/:id', async(req, res) => {
 app.get('/vegetarian/:id', async(req, res) => {
     try {
         const  { id } = req.params;
-        const getRecipe = await pool.query("SELECT * from vegetarian WHERE id = $1", [
+        const getRecipe = await pool.query("SELECT * from vegetarian ORDER BY id LIMIT 1 OFFSET $1", [
             id
         ]);
         res.json(getRecipe.rows[0])
@@ -89,7 +89,7 @@ app.get('/vegetarian/:id', async(req, res) => {
 app.get('/meat/:id', async(req, res) => {
     try {
         const  { id } = req.params;
-        const getRecipe = await pool.query("SELECT * from meat WHERE id = $1", [
+        const getRecipe = await pool.query("SELECT * from meat ORDER BY id LIMIT 1 OFFSET $1", [
             id
         ]);
         res.json(getRecipe.rows[0])
