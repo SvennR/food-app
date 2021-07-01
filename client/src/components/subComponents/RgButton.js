@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
-//import axios from 'axios';
-
-//import './rbButton.css'
-
-
-
 
 function RgButton() {
 
-
-    
     var [countFish, setCountFish] = useState();
     const getFishCount = () => {
         fetch("http://localhost:5000/fishCount")
@@ -20,7 +12,6 @@ function RgButton() {
         });
     };
         
-   
    var [countVegetarian, setCountVegetarian] = useState();
     const getVegetarianCount = () => {
         fetch("http://localhost:5000/vegetarianCount")
@@ -31,8 +22,6 @@ function RgButton() {
         });
     };
         
- 
-
    var [countMeat, setCountMeat] = useState();
     const getMeatCount = () => {
         fetch("http://localhost:5000/meatCount")
@@ -42,27 +31,11 @@ function RgButton() {
                 setCountMeat(json);   
         });
     };
-        
-   /*
-   var [fname, setfname] = useState();
-   var getRecipe = (number) => {
-        fetch("http://localhost:5000/fish/"+number)
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json);
-                setfname(json);   
-        });
-    };
-    */
-  
 
-   // console.log("outside fname: "+fname.name);
-        
    useEffect(() => {
     getVegetarianCount();
     getFishCount();
     getMeatCount();
-    //getRecipe(1);
    }, []); 
 
    
@@ -90,8 +63,7 @@ function RgButton() {
     
     function clickHandler() {
     
-    
-    // set random number based by how many rows exists in table
+    // set random number based by how many rows exists in the table
    var randomOneFish = Math.floor(Math.random() * countFish.count);
    var randomTwoFish = Math.floor(Math.random() * countFish.count);
    while (randomOneFish===randomTwoFish) {
@@ -104,10 +76,8 @@ function RgButton() {
    var randomFoureMeat = Math.floor(Math.random() * countMeat.count);
 
     
-        
-    // Arrays
-    const days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
-    /*
+   const days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
+    /* Retter jeg må legge inn
     const fish = ["Fiskepakke", "Kremet pasta med laks", "Pannestekt laks", "Torsk m/chorizosalsa", "Fiskesuppe", "Soya Laks", "Skrei m/ris", "torsk med grønnkål", "laks og grønnsaker", "laks med blomkålris", "laks med grønnkål", "laks med kremet spinat", "hjemmelaget fiskesuppe", "seibiff", "lakseburger", "currypanne med torsk", "kokt torsk"];
     const fishRes = ["side 38 ", "side 42 ", "side 53 ", "side 128", "side 133", "side 238", "https://www.godt.no/oppskrift/8448/dampet-soya-og-honningmarinert-skrei-med-kokosris", "https://www.matprat.no/oppskrifter/familien/lettsaltet-torsk-med-gronnkal-og-byggris/", "https://www.matprat.no/oppskrifter/familien/alt-i-ett-form-med-laks-og-gronnsaker/", 
                     "https://kiwi.no/oppskrifter/fisk/laks/laksefilet-med-blomkalris-og-urtedressing/", " https://kiwi.no/oppskrifter/fisk/laks/laks-med-ris-og-gronnkal/", "https://www.rema.no/oppskrifter/grillet-laks-med-kremet-spinat/REC-61663", "https://www.tine.no/oppskrifter/middag-og-hovedretter/supper/fiskesuppe", "https://www.roede.com/oppskrifter/seibiff-med-lok-og-potetmos", 
@@ -302,7 +272,7 @@ function RgButton() {
         }
         
     } // end of while loop
-    if(daysCount===0){ // just make it visible maybe? need form to fill in e-mail
+    if(daysCount===0){ 
         const save = document.createElement('button');
         save.innerHTML = "Send liste på mail";
         const wrapBtn = document.createElement('div')
@@ -314,7 +284,6 @@ function RgButton() {
     //document.getElementById('wrap').style.display = 'none';
     document.getElementById('start-button').style.display = 'none';
     }
-
 
 }
 
